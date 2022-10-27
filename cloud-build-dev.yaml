@@ -1,7 +1,5 @@
-#© 2022 Parker Hatch
-
+#© 2022 parker
 steps:
-
   # This step builds the container image.
   - name: 'gcr.io/cloud-builders/docker'
     id: Build
@@ -10,7 +8,6 @@ steps:
       - '-t'
       - 'gcr.io/$PROJECT_ID/stedi-parker:$SHORT_SHA'
       - '.'
-
   # This step pushes the image to Container Registry
   # The PROJECT_ID and SHORT_SHA variables are automatically
   # replaced by Cloud Build.
@@ -19,7 +16,6 @@ steps:
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/stedi-parker:$SHORT_SHA'
-
   # This step builds the container image.
   - name: 'gcr.io/cloud-builders/docker'
     id: Build-Latest
@@ -28,7 +24,6 @@ steps:
       - '-t'
       - 'gcr.io/$PROJECT_ID/stedi-parker:latest'
       - '.'
-
   # This step pushes the image to Container Registry
   # The PROJECT_ID and SHORT_SHA variables are automatically
   # replaced by Cloud Build.
@@ -37,7 +32,6 @@ steps:
     args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/stedi-parker:latest'
-
   # This step stops the stedi pod
   - name: 'gcr.io/cloud-builders/kubectl'
     id: Stop Pod
@@ -47,18 +41,16 @@ steps:
       - 'stedi-parker'
       - '--replicas=0'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
-
       # This step deploys the application in Kubernetes
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
       - run
       - --filename=app.yaml
       - --image=gcr.io/$PROJECT_ID/stedi-parker:$SHORT_SHA
-      - --location=us-east1-b
+      - --location=us-central1-c
       - --cluster=cluster-1
-
   # This step scales up the stedi pod
   - name: 'gcr.io/cloud-builders/kubectl'
     id: Start Pod
@@ -68,5 +60,5 @@ steps:
       - 'stedi-parker'
       - '--replicas=1'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
