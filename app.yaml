@@ -108,12 +108,29 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
     kubernetes.io/ingress.class: "gce"
 spec:
-  defaultBackend:
-    service:
-      name: stedi-nodeport-parker
-      port:
-        number: 80
----
+  # defaultBackend:
+  #   service:
+  #     name: stedi-nodeport-parker
+  #     port:
+  #       number: 80
+  rules:
+    - http:
+        paths:
+        - path: /dev
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: stedi-nodeport-parker
+              port:
+                number: 80
+#         - path: /discounted
+#           pathType: ImplementationSpecific
+#           backend:
+#             service:
+#               name: my-discounted-products
+#               port:
+#                 number: 80
+# ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
