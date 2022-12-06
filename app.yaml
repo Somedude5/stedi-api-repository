@@ -123,11 +123,18 @@ spec:
               name: stedi-nodeport-parker
               port:
                 number: 80
-#         - path: /discounted
+#         - path: /prod
 #           pathType: ImplementationSpecific
 #           backend:
 #             service:
-#               name: my-discounted-products
+#               name: stedi-nodeport-parker
+#               port:
+#                 number: 80
+#         - path: /test
+#           pathType: ImplementationSpecific
+#           backend:
+#             service:
+#               name: stedi-nodeport-parker
 #               port:
 #                 number: 80
 # ---
