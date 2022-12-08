@@ -72,3 +72,12 @@ steps:
       # - --substitutions
       # - _SHORT_SHA=$SHORT_SHA
       # - .
+# This step deploys the stage application in Kubernetes
+  - name: 'gcr.io/cloud-builders/gke-deploy'
+    args:
+    - run
+    - --filename=test.yaml
+    - --image=gcr.io/$PROJECT_ID/constellationweb:$_SHORT_SHA
+    - --output=/tmp/outputtest
+    - --location=us-east1-b
+    - --cluster=cluster-1 
