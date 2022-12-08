@@ -34,6 +34,7 @@ steps:
     - 'npm'
     - 'run'
     - 'test-dev'
+    - --output=/tmp/outputtest
 
   # This step scales up the stedi pod
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -61,6 +62,5 @@ steps:
     - run
     - --filename=cloud-build-prod.yaml
     - --image=gcr.io/$PROJECT_ID/constellationweb:latest
-    - --output=/tmp/outputtest
     - --location=us-east1-b
     - --cluster=cluster-1 
