@@ -50,7 +50,7 @@ steps:
     args:
     - run
     - --filename=test.yaml
-    - --image=gcr.io/$PROJECT_ID/constellationweb:$_SHORT_SHA
+    - --image=gcr.io/$PROJECT_ID/constellationweb:latest
     - --output=/tmp/outputtest
     - --location=us-east1-b
     - --cluster=cluster-1 
