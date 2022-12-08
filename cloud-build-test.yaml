@@ -46,12 +46,13 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
-name: 'gcr.io/cloud-builders/gcloud'
-args:
-  - builds
-  - submit
-  - --config
-  - cloud-build-dev.yaml
-  - --substitutions
-  - _SHORT_SHA=$SHORT_SHA
-  - .
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - builds
+      - submit
+      - --config
+      - cloud-build-dev.yaml
+      - --substitutions
+      - _SHORT_SHA=$SHORT_SHA
+      - .
