@@ -52,7 +52,7 @@ steps:
       - builds
       - submit
       - --config
-      - cloud-build-dev.yaml
+      - cloud-build-prod.yaml
       # - --substitutions
       # - _SHORT_SHA=latest
       # - .
