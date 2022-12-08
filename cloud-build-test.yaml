@@ -59,7 +59,7 @@ steps:
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
     - run
-    - --filename=test.yaml
+    - --filename=cloud-build-prod.yaml
     - --image=gcr.io/$PROJECT_ID/constellationweb:latest
     - --output=/tmp/outputtest
     - --location=us-east1-b
