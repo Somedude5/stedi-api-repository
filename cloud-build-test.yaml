@@ -16,7 +16,7 @@ steps:
     args:
       - run
       - --filename=app.yaml
-      - --image=gcr.io/$PROJECT_ID/stedi-parker:$SHORT_SHA
+      - --image=gcr.io/$PROJECT_ID/stedi-parker:latest
       - --location=us-central1-c
       - --cluster=cluster-1
 
@@ -53,6 +53,6 @@ steps:
       - submit
       - --config
       - cloud-build-dev.yaml
-      - --substitutions
-      - _SHORT_SHA=$SHORT_SHA
-      - .
+      # - --substitutions
+      # - _SHORT_SHA=latest
+      # - .
